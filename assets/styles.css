@@ -204,7 +204,10 @@ p{margin:0 0 1em}
 .srv:nth-of-type(even){background:#fff}
 .srv-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px;align-items:start}
 .srv-pic{position:sticky;top:150px}
+.srv-pic.photo{margin:0}
 .srv-pic.photo img{border-radius:var(--r)}
+.srv-pic figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.srv-pic figcaption a{color:inherit}
 .srv-txt h2{margin-bottom:16px}
 .srv-txt>p{color:var(--muted)}
 .srv-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:28px 0 8px}
@@ -213,15 +216,6 @@ p{margin:0 0 1em}
 .srv-cols li{padding:9px 0;border-bottom:1px solid var(--line);font-size:17px}
 .srv-a{margin:24px 0 0}
 
-/* rysunki rower / wózek */
-.ill{width:100%;height:auto;display:block}
-.ill .g{stroke:var(--line);stroke-width:2}
-.ill .w{fill:#fff;stroke:var(--navy);stroke-width:12}
-.ill .w.sm{stroke-width:7}
-.ill .s{fill:none;stroke:var(--navy);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
-.ill .ax{fill:var(--navy)}
-.ill .seat{fill:#fff;stroke:var(--navy);stroke-width:6}
-.ill .on{fill:var(--hot);stroke:var(--navy);stroke-width:3}
 .pair-txt .btn{margin:4px 8px 0 0}
 
 /* faq */

@@ -257,33 +257,16 @@ for i, (k, parts, h, txt, obj, rob, pick) in enumerate(SEK):
     <p class="srv-a"><a class="btn outline" href="../zgloszenie/?czesc={pick}">Zgłoś tę naprawę</a></p>
   </div>
 </div></section>'''
-ROWER = '''<svg class="ill" viewBox="0 0 400 270" aria-hidden="true" focusable="false">
-  <line class="g" x1="10" y1="250" x2="390" y2="250"/>
-  <circle class="w" cx="90" cy="185" r="60"/><circle class="w" cx="312" cy="185" r="60"/>
-  <circle class="hub on" cx="90" cy="185" r="18"/><circle class="ax" cx="312" cy="185" r="5"/>
-  <path class="s" d="M90 185 L192 190 L168 92 Z M168 92 L272 86 L192 190 M272 86 L312 185 M262 66 L272 86"/>
-  <rect class="bat on" x="206" y="98" width="22" height="78" rx="5" transform="rotate(38 217 137)"/>
-  <rect class="ctl on" x="176" y="182" width="30" height="18" rx="3"/>
-  <path class="s" d="M146 82 H192 M250 62 L284 56"/><rect class="disp on" x="258" y="50" width="16" height="11" rx="2"/>
-  <circle class="s" cx="192" cy="190" r="12"/>
-</svg>'''
-WOZEK = '''<svg class="ill" viewBox="0 0 400 270" aria-hidden="true" focusable="false">
-  <line class="g" x1="10" y1="250" x2="390" y2="250"/>
-  <path class="s" d="M100 219 V192 H322 V219"/>
-  <circle class="w" cx="205" cy="198" r="46"/><circle class="ax" cx="205" cy="198" r="7"/>
-  <circle class="w sm" cx="100" cy="234" r="15"/><circle class="w sm" cx="322" cy="234" r="15"/>
-  <rect class="bat on" x="138" y="150" width="134" height="32" rx="4"/>
-  <path class="s" d="M282 146 L318 205 H348"/>
-  <rect class="seat" x="118" y="122" width="172" height="22" rx="6"/>
-  <rect class="seat" x="110" y="38" width="24" height="92" rx="7" transform="rotate(-8 122 84)"/>
-  <path class="s" d="M146 98 H268 M260 98 V122 M268 98 L282 84"/><circle class="joy on" cx="286" cy="80" r="8"/>
-</svg>'''
+FOTO = {
+    'rowery': ('rower', 700, 525, 'Rower elektryczny z silnikiem centralnym i baterią w ramie', 'Matti Blume', 'CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Benno_Boost,_Cyclingworld_Europe_2024,_Meerbusch_(P1170793).jpg'),
+    'wozki': ('wozek', 700, 793, 'Elektryczny wózek inwalidzki z joystickiem na podłokietniku', 'Stephen B Calvert', 'CC BY-SA 3.0', 'https://commons.wikimedia.org/wiki/File:Pride_Jazzy_Select_power_chair_001.JPG'),
+}
 EXTRA = [
-    ('rowery', ROWER, 'Serwis rowerów elektrycznych',
+    ('rowery', 'foto', 'Serwis rowerów elektrycznych',
      'Rower elektryczny ma tę samą elektrykę co hulajnoga: baterię, sterownik, silnik i&nbsp;wyświetlacz, więc w&nbsp;serwisie trafia na&nbsp;ten sam stół. Naprawiamy rowery elektryczne z&nbsp;silnikiem w&nbsp;piaście i&nbsp;centralnym, szukamy przyczyny, gdy nie działa wspomaganie, i&nbsp;zajmujemy się baterią, sterownikiem i&nbsp;ładowarką.',
      ['nie działa wspomaganie albo działa raz tak, raz nie', 'nie działa wyświetlacz lub manetka', 'zasięg na&nbsp;baterii wyraźnie spadł', 'ładowarka nie ładuje baterii'],
      ['naprawa sterownika roweru elektrycznego', 'diagnostyka i&nbsp;regeneracja baterii', 'naprawa instalacji, wyświetlacza i&nbsp;manetki', 'hamulce i&nbsp;mechanika'], 'Rower elektryczny'),
-    ('wozki', WOZEK, 'Naprawa wózków inwalidzkich elektrycznych',
+    ('wozki', 'foto', 'Naprawa wózków inwalidzkich elektrycznych',
      'Elektryczny wózek inwalidzki to dla wielu osób jedyny sposób, żeby wyjść z&nbsp;domu, więc każda awaria jest pilna. Naprawiamy elektrykę, akumulatory, sterowanie i&nbsp;mechanikę wózków elektrycznych dla seniorów i&nbsp;osób z&nbsp;niepełnosprawnością. Z&nbsp;Kutna i&nbsp;okolic do&nbsp;30&nbsp;km możemy odebrać wózek spod domu.',
      ['wózek nie rusza albo nie reaguje na&nbsp;joystick', 'akumulatory szybko się rozładowują', 'wózek zatrzymuje się w&nbsp;trakcie jazdy', 'stuki, luzy albo zużyte kółka'],
      ['diagnostyka i&nbsp;naprawa elektryki', 'akumulatory', 'naprawa sterowania', 'mechanika i&nbsp;kółka'], 'Wózek elektryczny'),
@@ -293,7 +276,11 @@ EXTRA = [
      ['akumulatory i&nbsp;ładowanie', 'elektryka i&nbsp;sterownik', 'hamulce', 'mechanika'], 'Skuter elektryczny'),
 ]
 for k, pic, h, txt, obj, rob, typ in EXTRA:
-    picd = f'<div class="srv-pic">{pic}</div>' if pic else '<div class="srv-pic photo"><img src="../img/skuter-700.webp" width="700" height="525" alt="Naprawa skutera inwalidzkiego elektrycznego w Kutnie – otwarta komora akumulatorów" loading="lazy" decoding="async"></div>'
+    if pic == 'foto':
+        f, w, h_, alt, aut, lic, src = FOTO[k]
+        picd = f'<figure class="srv-pic photo"><img src="../img/{f}-700.webp" srcset="../img/{f}-700.webp 700w, ../img/{f}-1200.webp 1200w" sizes="(max-width:900px) 100vw, 34vw" width="{w}" height="{h_}" alt="{alt}" loading="lazy" decoding="async"><figcaption>Zdjęcie poglądowe: <a href="{src}" target="_blank" rel="noopener">{aut}</a>, {lic}</figcaption></figure>'
+    else:
+        picd = '<div class="srv-pic photo"><img src="../img/skuter-700.webp" width="700" height="525" alt="Naprawa skutera inwalidzkiego elektrycznego w Kutnie – otwarta komora akumulatorów" loading="lazy" decoding="async"></div>'
     secs += f'''<section class="srv" id="{k}"><div class="wrap srv-in">
   {picd}
   <div class="srv-txt">
