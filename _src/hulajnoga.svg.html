@@ -1,0 +1,72 @@
+<svg class="scooter" viewBox="20 30 800 600" role="group" aria-label="Rysunek hulajnogi – wybierz część">
+      <defs>
+        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#fff" stroke-width="1.4" opacity=".45"/></pattern>
+      </defs>
+      <!-- podłoże -->
+      <line class="ground" x1="40" y1="556" x2="780" y2="556"/>
+
+      <!-- tylne koło + hamulec tarczowy -->
+      <g class="part" data-part="opony" tabindex="-1">
+        <circle class="tyre" cx="175" cy="478" r="76"/>
+        <circle class="tyre" cx="645" cy="478" r="76"/>
+      </g>
+      <g class="rim"><circle cx="175" cy="478" r="58"/><circle cx="645" cy="478" r="58"/></g>
+      <g class="part" data-part="hamulce" tabindex="-1">
+        <circle class="disc" cx="175" cy="478" r="38"/>
+        <g class="disc-holes"><circle cx="175" cy="450" r="4"/><circle cx="199" cy="464" r="4"/><circle cx="199" cy="492" r="4"/><circle cx="175" cy="506" r="4"/><circle cx="151" cy="492" r="4"/><circle cx="151" cy="464" r="4"/></g>
+        <path class="caliper" d="M196 432 h26 a6 6 0 0 1 6 6 v22 h-32z"/>
+        <path class="cable" d="M222 432 C 300 395, 420 400, 540 300 S 585 140, 548 98"/>
+        <path class="lever" d="M520 86 l-34 10"/>
+      </g>
+      <circle class="axle" cx="175" cy="478" r="7"/>
+
+      <!-- silnik w przednim kole -->
+      <g class="part" data-part="silnik" tabindex="-1">
+        <circle class="hub" cx="645" cy="478" r="30"/>
+        <circle class="hub-in" cx="645" cy="478" r="14"/>
+      </g>
+
+      <!-- błotnik tylny -->
+      <path class="fender" d="M92 446 A 90 90 0 0 1 252 420"/>
+      <!-- deck -->
+      <path class="deck" d="M232 420 H560 a10 10 0 0 1 10 10 v20 a10 10 0 0 1 -10 10 H246 a14 14 0 0 1 -14 -14z"/>
+      <!-- bateria w decku -->
+      <g class="part" data-part="bateria" tabindex="-1">
+        <rect class="cell-box" x="262" y="427" width="210" height="26" fill="url(#hatch)"/>
+        <g class="cells"><line x1="292" y1="427" x2="292" y2="453"/><line x1="322" y1="427" x2="322" y2="453"/><line x1="352" y1="427" x2="352" y2="453"/><line x1="382" y1="427" x2="382" y2="453"/><line x1="412" y1="427" x2="412" y2="453"/><line x1="442" y1="427" x2="442" y2="453"/></g>
+      </g>
+      <!-- sterownik -->
+      <g class="part" data-part="sterownik" tabindex="-1">
+        <rect class="ctrl" x="484" y="427" width="64" height="26"/>
+        <path class="wire" d="M548 440 C 575 440, 590 420, 598 400"/>
+      </g>
+      <!-- widelec + kolumna + mechanizm składania -->
+      <path class="fork" d="M645 478 L 606 372"/>
+      <g class="part" data-part="luzy" tabindex="-1">
+        <rect class="fold" x="586" y="352" width="34" height="40" transform="rotate(-20 603 372)"/>
+        <path class="stem" d="M600 356 L 556 112"/>
+        <path class="bar" d="M490 96 H 612"/>
+        <rect class="grip" x="478" y="90" width="26" height="12"/>
+        <rect class="grip" x="598" y="90" width="26" height="12"/>
+      </g>
+      <!-- wyświetlacz -->
+      <g class="part" data-part="wyswietlacz" tabindex="-1">
+        <rect class="screen" x="532" y="80" width="46" height="30" rx="4"/>
+        <path class="throttle" d="M612 96 l22 14"/>
+      </g>
+      <!-- lampka -->
+      <path class="lamp" d="M566 168 l18 -4 l2 14 l-18 4z"/>
+      <!-- nóżka -->
+      <path class="kick" d="M300 460 l-34 76"/>
+
+      <!-- opisy (desktop) -->
+      <g class="callouts">
+        <g class="co" data-part="wyswietlacz"><path d="M578 92 L 680 50"/><text x="686" y="56">Wyświetlacz</text></g>
+        <g class="co" data-part="luzy"><path d="M582 230 L 640 210"/><text x="646" y="216">Kierownica, luzy</text></g>
+        <g class="co" data-part="hamulce"><path d="M212 430 L 190 330"/><text x="120" y="320">Hamulce</text></g>
+        <g class="co" data-part="opony"><path d="M120 528 L 96 584"/><text x="40" y="608">Opony i dętki</text></g>
+        <g class="co" data-part="bateria"><path d="M366 453 L 356 584"/><text x="318" y="608">Bateria</text></g>
+        <g class="co" data-part="sterownik"><path d="M516 453 L 520 584"/><text x="474" y="608">Sterownik</text></g>
+        <g class="co" data-part="silnik"><path d="M660 505 L 700 584"/><text x="652" y="608">Silnik, osiągi</text></g>
+      </g>
+    </svg>

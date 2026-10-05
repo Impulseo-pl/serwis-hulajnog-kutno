@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://impulseo-pl.github.io/serwis-hulajnog-kutno/sitemap.xml

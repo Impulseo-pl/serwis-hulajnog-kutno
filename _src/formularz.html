@@ -1,0 +1,56 @@
+<form class="form" id="form" novalidate>
+    <fieldset>
+      <legend><span>1</span> Jaki sprzęt?</legend>
+      <div class="opts">
+        <label><input type="radio" name="typ" value="Hulajnoga elektryczna" checked><span>Hulajnoga elektryczna</span></label>
+        <label><input type="radio" name="typ" value="Skuter elektryczny"><span>Skuter elektryczny</span></label>
+        <label><input type="radio" name="typ" value="Rower elektryczny"><span>Rower elektryczny</span></label>
+        <label><input type="radio" name="typ" value="Inny pojazd elektryczny"><span>Inny</span></label>
+      </div>
+      <label class="field"><span>Marka i&nbsp;model (jeśli wiesz)</span><input name="model" list="modele" placeholder="np. Xiaomi 4 Pro" autocomplete="off"></label>
+      <datalist id="modele"><option value="Xiaomi"><option value="Segway-Ninebot"><option value="Motus"><option value="Kugoo"><option value="KuKirin"><option value="Dualtron"><option value="Blaupunkt"><option value="Vivobike"><option value="Techlife"></datalist>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>2</span> Co się dzieje?</legend>
+      <div class="opts checks">
+        <label><input type="checkbox" name="obj" value="Nie włącza się" data-g="sterownik"><span>Nie włącza się</span></label>
+        <label><input type="checkbox" name="obj" value="Błąd na wyświetlaczu" data-g="wyswietlacz"><span>Błąd na wyświetlaczu</span></label>
+        <label><input type="checkbox" name="obj" value="Bateria szybko pada / nie ładuje" data-g="bateria"><span>Bateria szybko pada / nie ładuje</span></label>
+        <label><input type="checkbox" name="obj" value="Hamulec słabo trzyma / piszczy" data-g="hamulce"><span>Hamulec słabo trzyma / piszczy</span></label>
+        <label><input type="checkbox" name="obj" value="Kapeć, opona lub dętka" data-g="opony"><span>Kapeć, opona lub dętka</span></label>
+        <label><input type="checkbox" name="obj" value="Coś stuka, luzy na kierownicy" data-g="luzy"><span>Coś stuka, luzy na kierownicy</span></label>
+        <label><input type="checkbox" name="obj" value="Modernizacja / tuning" data-g="silnik"><span>Modernizacja / tuning</span></label>
+        <label><input type="checkbox" name="obj" value="Przegląd" data-g="przeglad"><span>Przegląd</span></label>
+      </div>
+      <label class="field"><span>Opisz własnymi słowami (opcjonalnie)</span><textarea name="opis" rows="3" placeholder="np. po deszczu wyskoczył błąd 21 i nie da się ruszyć"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>3</span> Jak dostarczysz sprzęt?</legend>
+      <div class="opts">
+        <label><input type="radio" name="dost" value="Przywiozę na Ściegiennego 25" checked><span>Przywiozę na&nbsp;Ściegiennego 25</span></label>
+        <label><input type="radio" name="dost" value="Proszę o odbiór"><span>Odbierzcie ode mnie</span></label>
+      </div>
+      <label class="field odb" hidden><span>Miejscowość i&nbsp;adres odbioru</span><input name="adres" list="miejsca" placeholder="np. Żychlin, ul. …" autocomplete="off"></label>
+      <p class="odb-info" hidden aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>4</span> Kontakt</legend>
+      <div class="two">
+        <label class="field"><span>Imię</span><input name="imie" autocomplete="given-name"></label>
+        <label class="field"><span>Telefon</span><input name="tel" type="tel" autocomplete="tel" inputmode="tel" required></label>
+      </div>
+    </fieldset>
+
+    <div class="form-out">
+      <p class="form-err" hidden>Podaj numer telefonu, żebyśmy mogli oddzwonić.</p>
+      <button class="btn hot" type="submit">Przygotuj wiadomość</button>
+      <div class="msg" hidden>
+        <p class="msg-l">Twoja wiadomość:</p>
+        <pre class="msg-t"></pre>
+        <div class="msg-a"><a class="btn hot" data-sms href="#">Wyślij SMS-em</a><a class="btn line-l" data-mail href="#">Wyślij e-mailem</a></div>
+      </div>
+    </div>
+  </form>
