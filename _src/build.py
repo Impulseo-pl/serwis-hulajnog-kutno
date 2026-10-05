@@ -27,7 +27,7 @@ PHONE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1
 BIZ = {
     "@type": "AutoRepair", "@id": URL + "#serwis",
     "name": "Serwis hulajnóg elektrycznych Kutno",
-    "description": "Naprawa i serwis hulajnóg elektrycznych, skuterów i rowerów elektrycznych w Kutnie. Wymiana dętek i opon, hamulce, naprawa sterowników i wyświetlaczy, regeneracja baterii, modernizacje. Odbiór sprzętu z Kutna i okolic do 30 km.",
+    "description": "Naprawa i serwis hulajnóg elektrycznych, rowerów elektrycznych, skuterów i wózków inwalidzkich elektrycznych w Kutnie. Wymiana dętek i opon, hamulce, naprawa sterowników i wyświetlaczy, regeneracja baterii, modernizacje. Odbiór sprzętu z Kutna i okolic do 30 km.",
     "url": URL, "telephone": TEL, "email": MAIL, "image": URL + "img/skuter-1200.webp",
     "address": {"@type": "PostalAddress", "streetAddress": "ul. Księdza Piotra Ściegiennego 25", "postalCode": "99-300", "addressLocality": "Kutno", "addressRegion": "łódzkie", "addressCountry": "PL"},
     "geo": {"@type": "GeoCoordinates", "latitude": HOME[0], "longitude": HOME[1]},
@@ -90,7 +90,7 @@ def page(path, title, desc, body, extra_ld=None, scripts=''):
   <div><p class="foot-b">Serwis hulajnóg elektrycznych Kutno</p><p>ul. Księdza Piotra Ściegiennego 25<br>99-300 Kutno, woj. łódzkie</p><p><a href="tel:{TEL}">{TEL_H}</a><br><a href="mailto:{MAIL}">{MAIL}</a></p></div>
   <div><p class="foot-b">Godziny</p><p>pon–pt 9:00–18:00<br>sobota 10:00–15:00<br>niedziela nieczynne</p></div>
   <div><p class="foot-b">Strony</p><ul>{foot_nav}</ul></div>
-  <div><p class="foot-b">Naprawiamy</p><p>hulajnogi elektryczne, skutery elektryczne, rowery elektryczne. Kutno, Krośniewice, Żychlin, Łęczyca, Gostynin i&nbsp;okolice do&nbsp;30&nbsp;km.</p></div>
+  <div><p class="foot-b">Naprawiamy</p><p>hulajnogi, rowery, skutery i&nbsp;wózki inwalidzkie elektryczne. Kutno, Krośniewice, Żychlin, Łęczyca, Gostynin i&nbsp;okolice do&nbsp;30&nbsp;km.</p></div>
 </div><div class="wrap foot-s"><p>© 2026 Serwis hulajnóg elektrycznych Kutno</p><p><a href="#">Polityka prywatności</a></p></div></footer>
 <div class="mbar"><a href="tel:{TEL}">Zadzwoń</a><a href="sms:{TEL}">SMS</a><a href="{B}zgloszenie/" class="m-sig">Zgłoś naprawę</a></div>
 {scripts}<script src="{B}assets/app.js" defer></script>
@@ -138,7 +138,9 @@ ZAKRES = [
     ('baterie', 'Baterie', 'diagnostyka, renowacja i&nbsp;regeneracja baterii, kalibracja ogniw'),
     ('tuning', 'Modernizacje', 'poprawa osiągów, zmiana blokad prędkości'),
     ('przeglad', 'Przegląd', 'przegląd przed sezonem, czyszczenie i&nbsp;smarowanie'),
-    ('inne', 'Skutery i&nbsp;rowery elektryczne', 'elektryka, akumulatory, hamulce i&nbsp;mechanika'),
+    ('rowery', 'Rowery elektryczne', 'wspomaganie, sterownik, bateria, ładowarka'),
+    ('wozki', 'Wózki inwalidzkie elektryczne', 'elektryka, akumulatory, sterowanie, mechanika'),
+    ('skutery', 'Skutery elektryczne', 'także skutery inwalidzkie dla seniorów'),
 ]
 zak = ''.join(f'<li><a href="naprawy/#{k}"><b>{t}</b><span>{d}</span></a></li>' for k, t, d in ZAKRES)
 blisko = ['Krośniewice', 'Piątek', 'Żychlin', 'Łęczyca', 'Dąbrowice', 'Gostynin']
@@ -195,8 +197,9 @@ home = f'''<section class="hero"><div class="wrap hero-in">
 <section class="sec"><div class="wrap pair">
   <figure class="pair-img"><img src="img/skuter-1200.webp" srcset="img/skuter-700.webp 700w, img/skuter-1200.webp 1200w" sizes="(max-width:860px) 100vw, 50vw" width="1200" height="900" alt="Naprawa skutera elektrycznego w Kutnie – otwarta komora akumulatorów" loading="lazy" decoding="async"><figcaption>Skuter elektryczny w&nbsp;trakcie naprawy</figcaption></figure>
   <div class="pair-txt">
-    <h2>Naprawiamy też skutery i&nbsp;rowery elektryczne</h2>
-    <p>Do&nbsp;serwisu trafiają nie tylko hulajnogi. Naprawiamy skutery elektryczne, rowery elektryczne i&nbsp;inne pojazdy na&nbsp;baterię: elektrykę, akumulatory, hamulce i&nbsp;mechanikę.</p>
+    <h2>Serwis rowerów, skuterów i&nbsp;wózków elektrycznych</h2>
+    <p>Do&nbsp;serwisu trafiają nie tylko hulajnogi. Naprawiamy rowery elektryczne, skutery elektryczne, także inwalidzkie dla seniorów, oraz elektryczne wózki inwalidzkie: elektrykę, akumulatory, sterowanie, hamulce i&nbsp;mechanikę.</p>
+    <p><a class="btn outline" href="naprawy/#rowery">Rowery</a><a class="btn outline" href="naprawy/#wozki">Wózki</a><a class="btn outline" href="naprawy/#skutery">Skutery</a></p>
     <p>Masz nietypowy sprzęt? Zadzwoń pod&nbsp;<a class="u" href="tel:{TEL}">{TEL_H}</a> i&nbsp;opisz, co się dzieje.</p>
   </div>
 </div></section>
@@ -211,7 +214,7 @@ home = f'''<section class="hero"><div class="wrap hero-in">
   <div class="actions"><a class="btn hot" href="tel:{TEL}">{TEL_H}</a><a class="btn ghost" href="zgloszenie/">Formularz zgłoszenia</a></div>
 </div></section>'''
 page('', 'Serwis hulajnóg elektrycznych Kutno – naprawa hulajnogi | tel. 889 503 420',
-     'Serwis i naprawa hulajnóg elektrycznych w Kutnie: wymiana dętek i opon, hamulce, sterowniki, wyświetlacze, regeneracja baterii. Odbiór sprzętu z okolic do 30 km. Ocena 4,4 w Google.', home)
+     'Serwis i naprawa hulajnóg elektrycznych w Kutnie: dętki i opony, hamulce, sterowniki, regeneracja baterii. Naprawiamy też rowery, skutery i wózki elektryczne. Odbiór z okolic do 30 km.', home)
 
 # ------------------------------------------------------------------ NAPRAWY
 SEK = [
@@ -254,12 +257,53 @@ for i, (k, parts, h, txt, obj, rob, pick) in enumerate(SEK):
     <p class="srv-a"><a class="btn outline" href="../zgloszenie/?czesc={pick}">Zgłoś tę naprawę</a></p>
   </div>
 </div></section>'''
-secs += f'''<section class="srv" id="inne"><div class="wrap srv-in">
-  <div class="srv-pic photo"><img src="../img/skuter-700.webp" width="700" height="525" alt="Naprawa skutera elektrycznego – serwis w Kutnie" loading="lazy" decoding="async"></div>
+ROWER = '''<svg class="ill" viewBox="0 0 400 270" aria-hidden="true" focusable="false">
+  <line class="g" x1="10" y1="250" x2="390" y2="250"/>
+  <circle class="w" cx="90" cy="185" r="60"/><circle class="w" cx="312" cy="185" r="60"/>
+  <circle class="hub on" cx="90" cy="185" r="18"/><circle class="ax" cx="312" cy="185" r="5"/>
+  <path class="s" d="M90 185 L192 190 L168 92 Z M168 92 L272 86 L192 190 M272 86 L312 185 M262 66 L272 86"/>
+  <rect class="bat on" x="206" y="98" width="22" height="78" rx="5" transform="rotate(38 217 137)"/>
+  <rect class="ctl on" x="176" y="182" width="30" height="18" rx="3"/>
+  <path class="s" d="M146 82 H192 M250 62 L284 56"/><rect class="disp on" x="258" y="50" width="16" height="11" rx="2"/>
+  <circle class="s" cx="192" cy="190" r="12"/>
+</svg>'''
+WOZEK = '''<svg class="ill" viewBox="0 0 400 270" aria-hidden="true" focusable="false">
+  <line class="g" x1="10" y1="250" x2="390" y2="250"/>
+  <path class="s" d="M100 219 V192 H322 V219"/>
+  <circle class="w" cx="205" cy="198" r="46"/><circle class="ax" cx="205" cy="198" r="7"/>
+  <circle class="w sm" cx="100" cy="234" r="15"/><circle class="w sm" cx="322" cy="234" r="15"/>
+  <rect class="bat on" x="138" y="150" width="134" height="32" rx="4"/>
+  <path class="s" d="M282 146 L318 205 H348"/>
+  <rect class="seat" x="118" y="122" width="172" height="22" rx="6"/>
+  <rect class="seat" x="110" y="38" width="24" height="92" rx="7" transform="rotate(-8 122 84)"/>
+  <path class="s" d="M146 98 H268 M260 98 V122 M268 98 L282 84"/><circle class="joy on" cx="286" cy="80" r="8"/>
+</svg>'''
+EXTRA = [
+    ('rowery', ROWER, 'Serwis rowerów elektrycznych',
+     'Rower elektryczny ma tę samą elektrykę co hulajnoga: baterię, sterownik, silnik i&nbsp;wyświetlacz, więc w&nbsp;serwisie trafia na&nbsp;ten sam stół. Naprawiamy rowery elektryczne z&nbsp;silnikiem w&nbsp;piaście i&nbsp;centralnym, szukamy przyczyny, gdy nie działa wspomaganie, i&nbsp;zajmujemy się baterią, sterownikiem i&nbsp;ładowarką.',
+     ['nie działa wspomaganie albo działa raz tak, raz nie', 'nie działa wyświetlacz lub manetka', 'zasięg na&nbsp;baterii wyraźnie spadł', 'ładowarka nie ładuje baterii'],
+     ['naprawa sterownika roweru elektrycznego', 'diagnostyka i&nbsp;regeneracja baterii', 'naprawa instalacji, wyświetlacza i&nbsp;manetki', 'hamulce i&nbsp;mechanika'], 'Rower elektryczny'),
+    ('wozki', WOZEK, 'Naprawa wózków inwalidzkich elektrycznych',
+     'Elektryczny wózek inwalidzki to dla wielu osób jedyny sposób, żeby wyjść z&nbsp;domu, więc każda awaria jest pilna. Naprawiamy elektrykę, akumulatory, sterowanie i&nbsp;mechanikę wózków elektrycznych dla seniorów i&nbsp;osób z&nbsp;niepełnosprawnością. Z&nbsp;Kutna i&nbsp;okolic do&nbsp;30&nbsp;km możemy odebrać wózek spod domu.',
+     ['wózek nie rusza albo nie reaguje na&nbsp;joystick', 'akumulatory szybko się rozładowują', 'wózek zatrzymuje się w&nbsp;trakcie jazdy', 'stuki, luzy albo zużyte kółka'],
+     ['diagnostyka i&nbsp;naprawa elektryki', 'akumulatory', 'naprawa sterowania', 'mechanika i&nbsp;kółka'], 'Wózek elektryczny'),
+    ('skutery', None, 'Naprawa skuterów elektrycznych',
+     'Naprawiamy skutery elektryczne, także trzykołowe i&nbsp;czterokołowe skutery inwalidzkie dla seniorów. Zajmujemy się akumulatorami, elektryką, hamulcami i&nbsp;mechaniką. Na&nbsp;zdjęciu skuter z&nbsp;otwartą komorą akumulatorów w&nbsp;trakcie naprawy.',
+     ['skuter nie rusza albo gaśnie w&nbsp;trakcie jazdy', 'akumulatory nie trzymają ładunku', 'słabo hamuje', 'nie działa licznik, światła lub kierunkowskazy'],
+     ['akumulatory i&nbsp;ładowanie', 'elektryka i&nbsp;sterownik', 'hamulce', 'mechanika'], 'Skuter elektryczny'),
+]
+for k, pic, h, txt, obj, rob, typ in EXTRA:
+    picd = f'<div class="srv-pic">{pic}</div>' if pic else '<div class="srv-pic photo"><img src="../img/skuter-700.webp" width="700" height="525" alt="Naprawa skutera inwalidzkiego elektrycznego w Kutnie – otwarta komora akumulatorów" loading="lazy" decoding="async"></div>'
+    secs += f'''<section class="srv" id="{k}"><div class="wrap srv-in">
+  {picd}
   <div class="srv-txt">
-    <h2>Naprawa skutera i&nbsp;roweru elektrycznego</h2>
-    <p>Skutery elektryczne, rowery elektryczne i&nbsp;inne pojazdy na&nbsp;baterię mają podobną elektrykę, akumulatory i&nbsp;hamulce jak hulajnogi, dlatego też je naprawiamy. Przy nietypowym sprzęcie zadzwoń przed przyjazdem i&nbsp;opisz, co się dzieje.</p>
-    <p class="srv-a"><a class="btn outline" href="../zgloszenie/">Zgłoś naprawę</a></p>
+    <h2>{h}</h2>
+    <p>{txt}</p>
+    <div class="srv-cols">
+      <div><h3>Typowe objawy</h3><ul>{''.join('<li>%s</li>' % x for x in obj)}</ul></div>
+      <div><h3>Co robimy</h3><ul>{''.join('<li>%s</li>' % x for x in rob)}</ul></div>
+    </div>
+    <p class="srv-a"><a class="btn outline" href="../zgloszenie/?typ={typ.replace(' ', '+')}">Zgłoś naprawę</a></p>
   </div>
 </div></section>'''
 
@@ -271,22 +315,24 @@ FAQ = [
     ('Co oznacza kod błędu na wyświetlaczu?', 'Kod błędu wskazuje, który układ hulajnogi zgłasza problem, np. silnik, sterownik, hamulec czy baterię. Zapisz go albo zrób zdjęcie wyświetlacza i&nbsp;podaj w&nbsp;zgłoszeniu, to przyspiesza diagnozę.'),
     ('Czy regenerujecie baterie do hulajnóg Xiaomi?', 'Tak. Robimy diagnostykę, renowację i&nbsp;regenerację baterii hulajnóg elektrycznych, w&nbsp;tym Xiaomi, oraz kalibrację ogniw.'),
     ('Czy można odblokować prędkość w hulajnodze?', 'Tak, zajmujemy się modernizacjami i&nbsp;zmianą blokad prędkości. Na&nbsp;drogach publicznych hulajnoga elektryczna może jechać najwyżej 20&nbsp;km/h, szybsza jazda jest dozwolona tylko na&nbsp;terenie prywatnym.'),
+    ('Rower elektryczny – nie działa wspomaganie. Co może być przyczyną?', 'Najczęściej czujnik prędkości i&nbsp;magnes na&nbsp;szprysze, uszkodzony przewód albo złącze, czujnik pedałowania, sterownik lub bateria. Sprawdzamy układ po&nbsp;kolei i&nbsp;mówimy, co trzeba wymienić.'),
+    ('Czy naprawiacie elektryczne wózki inwalidzkie i skutery dla seniorów?', 'Tak. Naprawiamy elektrykę, akumulatory, sterowanie, hamulce i&nbsp;mechanikę wózków i&nbsp;skuterów elektrycznych. Jeśli wózek nie jedzie, z&nbsp;Kutna i&nbsp;okolic do&nbsp;30&nbsp;km możemy go odebrać spod domu.'),
     ('Czy trzeba się umawiać?', f'Najlepiej zadzwoń przed przyjazdem pod&nbsp;{TEL_H}. Upewnimy się, że ktoś jest na&nbsp;miejscu, i&nbsp;od&nbsp;razu wstępnie opowiesz, co się dzieje.'),
 ]
 faq = ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in FAQ)
 faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": H.unescape(q), "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', H.unescape(a))}} for q, a in FAQ]}
-srv_ld = {"@type": "OfferCatalog", "name": "Naprawy hulajnóg elektrycznych", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": H.unescape(re.sub('<[^>]+>', '', s[2])), "provider": {"@id": URL + "#serwis"}, "areaServed": "Kutno"}} for s in SEK]}
+srv_ld = {"@type": "OfferCatalog", "name": "Naprawy pojazdów elektrycznych", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": H.unescape(re.sub('<[^>]+>', '', x)), "provider": {"@id": URL + "#serwis"}, "areaServed": "Kutno"}} for x in [e[2] for e in SEK] + [e[2] for e in EXTRA]]}
 
-skok = ''.join(f'<a href="#{k}">{H.unescape(t).replace(chr(160), " ")}</a>' for k, t in [(s[0], re.sub('<[^>]+>', '', s[2])) for s in SEK] + [('inne', 'Skutery i rowery'), ('pytania', 'Pytania')])
-napr = band('Naprawy', 'Naprawa hulajnóg elektrycznych w&nbsp;Kutnie',
-            'Dętki i&nbsp;opony, hamulce, sterowniki, wyświetlacze, baterie i&nbsp;modernizacje. Poniżej znajdziesz typowe objawy usterek i&nbsp;to, co z&nbsp;nimi robimy.') + \
+skok = ''.join(f'<a href="#{k}">{H.unescape(t).replace(chr(160), " ")}</a>' for k, t in [(s[0], re.sub('<[^>]+>', '', s[2])) for s in SEK] + [('rowery', 'Rowery elektryczne'), ('wozki', 'Wózki elektryczne'), ('skutery', 'Skutery elektryczne'), ('pytania', 'Pytania')])
+napr = band('Naprawy', 'Naprawa hulajnóg, rowerów, skuterów i&nbsp;wózków elektrycznych w&nbsp;Kutnie',
+            'Dętki i&nbsp;opony, hamulce, sterowniki, wyświetlacze, baterie i&nbsp;modernizacje hulajnóg, a&nbsp;także serwis rowerów elektrycznych, skuterów i&nbsp;elektrycznych wózków inwalidzkich. Poniżej typowe objawy usterek i&nbsp;to, co z&nbsp;nimi robimy.') + \
     f'<nav class="jump" aria-label="Na tej stronie"><div class="wrap">{skok}</div></nav>' + secs + f'''
 <section class="sec white" id="pytania"><div class="wrap faq-wrap">
   <h2>Pytania o&nbsp;naprawy</h2>
   <div class="faq">{faq}</div>
 </div></section>'''
-page('naprawy/', 'Naprawa hulajnogi elektrycznej Kutno – dętki, hamulce, sterowniki, baterie',
-     'Naprawa hulajnóg elektrycznych w Kutnie: wymiana dętki i opony, regulacja hamulców, naprawa sterownika i wyświetlacza, regeneracja baterii, odblokowanie prędkości, przeglądy.', napr, [faq_ld, srv_ld])
+page('naprawy/', 'Naprawa hulajnogi elektrycznej, roweru, skutera i wózka elektrycznego – Kutno',
+     'Naprawa hulajnóg elektrycznych w Kutnie: dętki i opony, hamulce, sterowniki, wyświetlacze, regeneracja baterii. Serwis rowerów elektrycznych, skuterów i wózków inwalidzkich elektrycznych.', napr, [faq_ld, srv_ld])
 
 # ------------------------------------------------------------------ ZGŁOSZENIE
 zg = band('Zgłoś naprawę', 'Zgłoś naprawę hulajnogi elektrycznej',
@@ -315,7 +361,7 @@ for m in sorted([m for m in MIEJSCA if m['n'] != 'Kutno'], key=lambda m: m['d'])
     st = '<span class="ok">w zasięgu</span>' if d <= 30 else ('zadzwoń, ustalimy' if d <= 35 else 'poza strefą')
     rows += f'<tr><th>{m["n"]}</th><td>ok. {round(d)}&nbsp;km</td><td>{st}</td></tr>'
 od = band('Odbiór z domu', 'Odbiór hulajnogi do&nbsp;serwisu – Kutno i&nbsp;okolice',
-          'W&nbsp;promieniu 30&nbsp;km od&nbsp;serwisu możemy przyjechać po&nbsp;hulajnogę, skuter albo rower elektryczny, naprawić go i&nbsp;odwieźć z&nbsp;powrotem.') + f'''
+          'W&nbsp;promieniu 30&nbsp;km od&nbsp;serwisu możemy przyjechać po&nbsp;hulajnogę, rower, skuter albo wózek elektryczny, naprawić sprzęt i&nbsp;odwieźć z&nbsp;powrotem.') + f'''
 <section class="sec"><div class="wrap odb-wrap">
   <div class="odb-txt">
     <h2>Sprawdź, czy przyjedziemy</h2>

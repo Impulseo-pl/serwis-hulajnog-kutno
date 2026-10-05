@@ -213,6 +213,17 @@ p{margin:0 0 1em}
 .srv-cols li{padding:9px 0;border-bottom:1px solid var(--line);font-size:17px}
 .srv-a{margin:24px 0 0}
 
+/* rysunki rower / wózek */
+.ill{width:100%;height:auto;display:block}
+.ill .g{stroke:var(--line);stroke-width:2}
+.ill .w{fill:#fff;stroke:var(--navy);stroke-width:12}
+.ill .w.sm{stroke-width:7}
+.ill .s{fill:none;stroke:var(--navy);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.ill .ax{fill:var(--navy)}
+.ill .seat{fill:#fff;stroke:var(--navy);stroke-width:6}
+.ill .on{fill:var(--hot);stroke:var(--navy);stroke-width:3}
+.pair-txt .btn{margin:4px 8px 0 0}
+
 /* faq */
 .faq-wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px}
 .faq{border-top:2px solid var(--text)}

@@ -84,7 +84,8 @@
   /* ---------- formularz zgłoszenia ---------- */
   var form = $('#form');
   if (form) {
-    var q = new URLSearchParams(location.search).get('czesc');
+    var qs = new URLSearchParams(location.search), q = qs.get('czesc'), typ = qs.get('typ');
+    if (typ) $$('input[name=typ]', form).forEach(function (i) { i.checked = i.value === typ; });
     if (q) $$('input[name=obj]', form).forEach(function (i) { if (i.getAttribute('data-g') === q) i.checked = true; });
     var odb = $('.odb', form), odbInfo = $('.odb-info', form);
     var dl2 = $('#miejsca'); if (!dl2) { dl2 = document.createElement('datalist'); dl2.id = 'miejsca'; form.appendChild(dl2); }
