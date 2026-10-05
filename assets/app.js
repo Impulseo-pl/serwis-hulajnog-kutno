@@ -136,71 +136,55 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
-  /* ---------- mapa strefy odbioru ---------- */
-  var radar = document.getElementById('radar'), out = document.getElementById('chk-out'), inp = document.getElementById('miasto');
-  var NS = 'http://www.w3.org/2000/svg', SKALA = 200 / ZASIEG; // 30 km = 200 px
-  var ETYK = ['Żychlin', 'Krośniewice', 'Łęczyca', 'Gostynin', 'Kłodawa', 'Łowicz', 'Płock', 'Piątek', 'Ozorków', 'Gąbin', 'Dąbrowice', 'Strzelce', 'Witonia', 'Sanniki', 'Oporów'];
-  var DUZE = ['Żychlin', 'Krośniewice', 'Łęczyca', 'Gostynin', 'Kłodawa', 'Łowicz', 'Płock', 'Piątek', 'Ozorków', 'Gąbin', 'Dąbrowice', 'Sanniki', 'Kiernozia', 'Oporów', 'Strzelce', 'Bedlno', 'Witonia', 'Daszyna', 'Nowe Ostrowy', 'Grabów', 'Chodów', 'Pacyna', 'Szczawin Kościelny', 'Dobrzelin', 'Łanięta', 'Krzyżanów', 'Góra Świętej Małgorzaty'];
-  function xy(m) {
-    var x = (m.lon - HOME.lon) * Math.cos(HOME.lat * Math.PI / 180) * 111.32 * SKALA;
-    var y = -(m.lat - HOME.lat) * 110.57 * SKALA;
-    return [x, y];
-  }
-  function el(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); (p || radar).appendChild(e); return e; }
-  var linia = null, etykieta = null, punkty = {};
-  function rysuj() {
-    el('circle', { 'class': 'ring', cx: 0, cy: 0, r: 15 * SKALA });
-    el('circle', { 'class': 'zone', cx: 0, cy: 0, r: ZASIEG * SKALA });
-    el('circle', { 'class': 'ring', cx: 0, cy: 0, r: 40 * SKALA });
-    el('text', { 'class': 'ring-l', x: 6, y: -ZASIEG * SKALA - 8 }).textContent = '30 km';
-    el('text', { 'class': 'ring-l', x: 6, y: -15 * SKALA - 8 }).textContent = '15 km';
-    MIEJSCA.forEach(function (m) {
-      if (m.n === 'Kutno' || DUZE.indexOf(m.n) < 0) return;
-      var p = xy(m); if (Math.abs(p[0]) > 290 || Math.abs(p[1]) > 290) return;
-      var g = el('g', { 'class': 't' + (m.km > ZASIEG ? ' out' : '') + (['Żychlin', 'Krośniewice', 'Łęczyca', 'Gostynin', 'Kłodawa', 'Łowicz', 'Płock', 'Ozorków', 'Gąbin'].indexOf(m.n) > -1 ? ' big' : ''), transform: 'translate(' + p[0].toFixed(1) + ',' + p[1].toFixed(1) + ')' });
-      el('circle', { r: 4.5 }, g);
-      var lewa = p[0] > 150;
-      var t = el('text', { x: lewa ? -9 : 9, y: 5, 'text-anchor': lewa ? 'end' : 'start' }, g); t.textContent = m.n;
-      if (ETYK.indexOf(m.n) < 0) g.classList.add('small');
-      punkty[m.n] = g;
-    });
-    linia = el('line', { 'class': 'line', x1: 0, y1: 0, x2: 0, y2: 0, visibility: 'hidden' });
-    etykieta = el('text', { 'class': 'km', 'text-anchor': 'middle', visibility: 'hidden' });
-    var h = el('g', { 'class': 'home' });
-    el('rect', { x: -9, y: -9, width: 18, height: 18 }, h);
-    el('text', { x: 0, y: 30, 'text-anchor': 'middle' }, h).textContent = 'Kutno – serwis';
+  /* ---------- mapa strefy odbioru (Leaflet) ---------- */
+  var out = document.getElementById('chk-out'), inp = document.getElementById('miasto');
+  var GLOWNE = ['Żychlin', 'Krośniewice', 'Łęczyca', 'Gostynin', 'Kłodawa', 'Łowicz', 'Płock', 'Piątek', 'Ozorków', 'Gąbin', 'Dąbrowice', 'Strzelce', 'Witonia', 'Sanniki', 'Oporów', 'Bedlno', 'Daszyna', 'Nowe Ostrowy', 'Łanięta', 'Krzyżanów'];
+  var DUZE = ['Żychlin', 'Krośniewice', 'Łęczyca', 'Gostynin', 'Kłodawa', 'Łowicz', 'Płock', 'Ozorków', 'Gąbin'];
+  var mapa = null, linia = null, cel = null, dom = null;
+  function mapaStart() {
+    if (!window.L || mapa) return;
+    var mob = matchMedia('(max-width: 900px)').matches;
+    mapa = L.map('mapa', { scrollWheelZoom: false, dragging: !mob, tap: false, zoomControl: !mob, attributionControl: true }).setView([HOME.lat, HOME.lon], mob ? 9 : 10);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18, className: 'kafle',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mapa);
+    L.circle([HOME.lat, HOME.lon], { radius: ZASIEG * 1000, color: '#1c3fd1', weight: 2.5, fillColor: '#1c3fd1', fillOpacity: .09 }).addTo(mapa);
+    L.circle([HOME.lat, HOME.lon], { radius: 15000, color: '#1c3fd1', weight: 1, opacity: .45, dashArray: '4 6', fill: false, interactive: false }).addTo(mapa);
+    dom = L.marker([HOME.lat, HOME.lon], { icon: L.divIcon({ className: 'pin', iconSize: [20, 20] }), keyboard: false, zIndexOffset: 1000 })
+      .bindTooltip('Serwis · Kutno', { permanent: true, direction: 'top', offset: [0, -12], className: 'km' }).addTo(mapa);
   }
   function zaznaczNaMapie(m, d) {
-    Object.keys(punkty).forEach(function (k) { punkty[k].classList.toggle('sel', m && k === m.n); });
-    if (!m) { linia.setAttribute('visibility', 'hidden'); etykieta.setAttribute('visibility', 'hidden'); return; }
-    var p = xy(m), r = Math.hypot(p[0], p[1]), maks = 285;
-    if (r > maks) { p = [p[0] * maks / r, p[1] * maks / r]; }
-    linia.setAttribute('x2', p[0]); linia.setAttribute('y2', p[1]); linia.setAttribute('visibility', 'visible');
-    etykieta.setAttribute('x', p[0] / 2); etykieta.setAttribute('y', p[1] / 2 - 8); etykieta.textContent = Math.round(d) + ' km';
-    etykieta.setAttribute('visibility', d < 1.5 ? 'hidden' : 'visible');
+    if (!mapa) return;
+    if (linia) { mapa.removeLayer(linia); linia = null; }
+    if (cel) { mapa.removeLayer(cel); cel = null; }
+    if (!m) { if (dom) dom.openTooltip(); return; }
+    if (dom) dom.closeTooltip();
+    linia = L.polyline([[HOME.lat, HOME.lon], [m.lat, m.lon]], { color: '#ff6a2b', weight: 3, dashArray: '8 7' }).addTo(mapa);
+    cel = L.circleMarker([m.lat, m.lon], { radius: 9, color: '#fff', weight: 3, fillColor: '#ff6a2b', fillOpacity: 1 }).addTo(mapa);
+    cel.bindTooltip((m.n && m.n !== 'Twoja lokalizacja' ? m.n + ' · ' : '') + Math.round(d) + ' km', { permanent: true, direction: 'top', offset: [0, -10], className: 'km' }).openTooltip();
+    mapa.flyToBounds(L.latLngBounds([[HOME.lat, HOME.lon], [m.lat, m.lon]]).pad(.5), { maxZoom: 11, duration: .6 });
   }
   function sprawdz(m, nazwa, d) {
     if (d == null) d = m.km;
     var w = werdykt(d);
     zaznaczNaMapie(m, d);
     out.innerHTML = w === 'ok'
-      ? '<b>' + nazwa + '</b><br>' + fmt(d) + ' od serwisu. <span class="ok">W zasięgu odbioru.</span>'
+      ? '<b>' + nazwa + '</b><br>' + fmt(d) + ' od serwisu. <span class="ok">W zasięgu odbioru</span>'
       : w === 'granica'
         ? '<b>' + nazwa + '</b><br>' + fmt(d) + ' od serwisu, tuż za granicą 30 km. Zadzwoń pod <a class="u" href="tel:' + TEL + '">889 503 420</a>, ustalimy.'
         : '<b>' + nazwa + '</b><br>' + fmt(d) + ' od serwisu, poza strefą odbioru. Sprzęt możesz przywieźć na ul. Ściegiennego 25 w Kutnie.';
   }
   inp.addEventListener('input', function () {
     var m = znajdz(inp.value);
-    if (m) sprawdz(m, m.n); else { out.textContent = ''; if (linia) zaznaczNaMapie(null); }
+    if (m) sprawdz(m, m.n); else { out.textContent = ''; zaznaczNaMapie(null); }
   });
   document.getElementById('geo').addEventListener('click', function () {
     if (!navigator.geolocation) { out.textContent = 'Twoja przeglądarka nie udostępnia lokalizacji.'; return; }
     out.textContent = 'Sprawdzam lokalizację…';
     navigator.geolocation.getCurrentPosition(function (pos) {
       var me = { n: 'Twoja lokalizacja', lat: pos.coords.latitude, lon: pos.coords.longitude };
-      var d = km(HOME, me);
-      punkty[me.n] = punkty[me.n] || null;
-      sprawdz(me, 'Twoja lokalizacja', d);
+      sprawdz(me, 'Twoja lokalizacja', km(HOME, me));
     }, function () { out.textContent = 'Nie udało się pobrać lokalizacji. Wpisz miejscowość.'; }, { timeout: 8000 });
   });
 
@@ -208,6 +192,10 @@
     MIEJSCA = d.map(function (m) { m.km = km(HOME, m); return m; });
     var dl = document.getElementById('miejsca');
     MIEJSCA.forEach(function (m) { var o = document.createElement('option'); o.value = m.n; dl.appendChild(o); });
-    rysuj();
+    var box = document.getElementById('mapa');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { mapaStart(); io.disconnect(); } }, { rootMargin: '400px' });
+      io.observe(box);
+    } else mapaStart();
   }).catch(function () {});
 })();

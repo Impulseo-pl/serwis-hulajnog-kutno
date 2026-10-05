@@ -14,7 +14,7 @@ with sync_playwright() as p:
     if w>900: pg.click('.co[data-part=bateria] text')
     else: pg.click('.parts-list button[data-part=bateria]')
     pg.wait_for_timeout(500);pg.screenshot(path=f'{OUT}/{w}_part.png')
-    pg.fill('#miasto','Żychlin');pg.wait_for_timeout(300)
+    pg.evaluate("document.querySelector('#odbior').scrollIntoView()");pg.wait_for_timeout(1500);pg.fill('#miasto','Żychlin');pg.wait_for_timeout(1500)
     pg.evaluate("document.querySelector('#odbior').scrollIntoView()");pg.wait_for_timeout(500)
     pg.screenshot(path=f'{OUT}/{w}_odbior.png')
     pg.check('input[value="Bateria szybko pada / nie ładuje"]',force=True)

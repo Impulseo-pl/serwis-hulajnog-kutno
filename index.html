@@ -10,11 +10,12 @@
 <meta property="og:title" content="Serwis hulajnóg elektrycznych – Kutno">
 <meta property="og:description" content="Naprawy, baterie, hamulce, sterowniki. Odbiór sprzętu z Kutna i okolic do 30 km. Tel. 889 503 420.">
 <meta property="og:url" content="https://impulseo-pl.github.io/serwis-hulajnog-kutno/">
-<meta name="theme-color" content="#17191c">
+<meta name="theme-color" content="#1c3fd1">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoRepair","name":"Serwis hulajnóg elektrycznych Kutno","description":"Naprawa, przeglądy i modernizacje hulajnóg elektrycznych oraz innych pojazdów elektrycznych. Odbiór sprzętu z Kutna i okolic do 30 km.","url":"https://impulseo-pl.github.io/serwis-hulajnog-kutno/","telephone":"+48889503420","email":"Revoltec@vp.pl","address":{"@type":"PostalAddress","streetAddress":"ul. Księdza Piotra Ściegiennego 25","postalCode":"99-300","addressLocality":"Kutno","addressRegion":"łódzkie","addressCountry":"PL"},"geo":{"@type":"GeoCoordinates","latitude":52.2236904,"longitude":19.3550328},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":52.2236904,"longitude":19.3550328},"geoRadius":"30000"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"15:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":"10","bestRating":"5"}}</script>
 </head>
@@ -23,7 +24,7 @@
 
 <header class="top"><div class="wrap top-in">
   <a class="brand" href="#" aria-label="Serwis hulajnóg Kutno – strona główna">
-    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#f6c32b"/><path d="M11 29h15l4-17h4" fill="none" stroke="#17191c" stroke-width="2.6" stroke-linecap="square"/><circle cx="11" cy="29" r="3.6" fill="#f6c32b" stroke="#17191c" stroke-width="2.4"/><circle cx="28" cy="29" r="3.6" fill="#f6c32b" stroke="#17191c" stroke-width="2.4"/></svg>
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#1c3fd1"/><path d="M10 28h16l4-16h4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="28" r="3.6" fill="#1c3fd1" stroke="#fff" stroke-width="2.4"/><circle cx="28" cy="28" r="3.6" fill="#ff6a2b" stroke="#fff" stroke-width="2.4"/></svg>
     <span class="brand-t"><b>Serwis hulajnóg</b><span>Kutno · ul. Ściegiennego 25</span></span>
   </a>
   <nav class="nav" aria-label="Menu główne">
@@ -44,8 +45,8 @@
     <h1>Serwis hulajnóg elektrycznych w&nbsp;Kutnie</h1>
     <p class="lead">Przestała działać, coś stuka, hamulec nie trzyma, bateria szybko pada? Nie szukaj serwisu kilkadziesiąt kilometrów dalej. Naprawiamy na&nbsp;miejscu, a&nbsp;z&nbsp;Kutna i&nbsp;okolic do&nbsp;30&nbsp;km możemy odebrać hulajnogę spod domu.</p>
     <div class="actions">
-      <a class="btn sig" href="tel:+48889503420">Zadzwoń: 889 503 420</a>
-      <a class="btn line" href="#zgloszenie">Opisz usterkę</a>
+      <a class="btn hot" href="tel:+48889503420">Zadzwoń: 889 503 420</a>
+      <a class="btn ghost" href="#zgloszenie">Opisz usterkę</a>
     </div>
     <p class="hero-g"><a href="https://www.google.com/maps/place/Naprawa+serwis+hulajnogi/@52.2236904,19.3550328,17z" target="_blank" rel="noopener"><span class="stars" aria-hidden="true">★★★★<i>★</i></span> 4,4 w&nbsp;Google · 10 opinii</a></p>
   </div>
@@ -54,7 +55,7 @@
     <p class="scooter-hint">Kliknij część, która sprawia kłopot</p>
     <svg class="scooter" viewBox="20 30 800 600" role="group" aria-label="Rysunek hulajnogi – wybierz część">
       <defs>
-        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#17191c" stroke-width="1.4" opacity=".35"/></pattern>
+        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#fff" stroke-width="1.4" opacity=".45"/></pattern>
       </defs>
       <!-- podłoże -->
       <line class="ground" x1="40" y1="556" x2="780" y2="556"/>
@@ -159,34 +160,34 @@
     <p>Wszystko, co w&nbsp;hulajnodze elektrycznej się psuje: od dętki po&nbsp;sterownik. Wycenę podajemy po&nbsp;obejrzeniu sprzętu, bo&nbsp;ta sama usterka w&nbsp;dwóch modelach to często dwie różne naprawy.</p>
   </div>
 
-  <div class="svc">
-    <article class="svc-row" id="s-jezdny">
-      <h3>Układ jezdny i&nbsp;mechanika</h3>
+  <div class="tiles">
+    <article class="tile" id="s-jezdny">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6"/><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21"/></svg><h3>Układ jezdny i&nbsp;mechanika</h3>
       <ul><li>wymiana opon i&nbsp;dętek</li><li>kasowanie luzów na&nbsp;kierownicy i&nbsp;mechanizmie składania</li><li>naprawa zawieszenia</li></ul>
       <a href="#zgloszenie" data-pick="opony">Zgłoś</a>
     </article>
-    <article class="svc-row" id="s-hamulce">
-      <h3>Hamulce</h3>
+    <article class="tile" id="s-hamulce">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="6.6" r="1"/><circle cx="16.7" cy="9.3" r="1"/><circle cx="16.7" cy="14.7" r="1"/><circle cx="12" cy="17.4" r="1"/><circle cx="7.3" cy="14.7" r="1"/><circle cx="7.3" cy="9.3" r="1"/></svg><h3>Hamulce</h3>
       <ul><li>naprawa i&nbsp;regulacja hamulców</li><li>wymiana klocków</li><li>wymiana tarcz</li></ul>
       <a href="#zgloszenie" data-pick="hamulce">Zgłoś</a>
     </article>
-    <article class="svc-row" id="s-elektronika">
-      <h3>Elektronika i&nbsp;elektryka</h3>
+    <article class="tile" id="s-elektronika">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg><h3>Elektronika i&nbsp;elektryka</h3>
       <ul><li>naprawa sterowników i&nbsp;płyt</li><li>naprawa wyświetlaczy</li><li>usuwanie usterek elektrycznych</li></ul>
       <a href="#zgloszenie" data-pick="sterownik">Zgłoś</a>
     </article>
-    <article class="svc-row" id="s-bateria">
-      <h3>Baterie</h3>
+    <article class="tile" id="s-bateria">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M19 10.5h2v3h-2M11.5 8.5 8.5 12.5h4l-3 3.5"/></svg><h3>Baterie</h3>
       <ul><li>diagnostyka</li><li>renowacja i&nbsp;regeneracja</li><li>kalibracja ogniw</li></ul>
       <a href="#zgloszenie" data-pick="bateria">Zgłoś</a>
     </article>
-    <article class="svc-row" id="s-tuning">
-      <h3>Modernizacje i&nbsp;tuning</h3>
+    <article class="tile" id="s-tuning">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5a8.5 8.5 0 1 1 15 0"/><path d="M12 13.5 16 8.5"/><circle cx="12" cy="14" r="1.6"/><path d="M6.5 11.5h1M8.6 7.5l.7.7M12 5.8v1M15.4 7.5"/></svg><h3>Modernizacje i&nbsp;tuning</h3>
       <ul><li>poprawa osiągów</li><li>zmiana blokad prędkości</li><li>modyfikacje na&nbsp;życzenie</li></ul>
       <a href="#zgloszenie" data-pick="silnik">Zgłoś</a>
     </article>
-    <article class="svc-row" id="s-przeglad">
-      <h3>Przegląd i&nbsp;konserwacja</h3>
+    <article class="tile" id="s-przeglad">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.3l-5.6 5.6a1.8 1.8 0 0 0 2.5 2.5l5.6-5.6a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.3-.3-.3-2.3z"/></svg><h3>Przegląd i&nbsp;konserwacja</h3>
       <ul><li>przegląd przed sezonem lub po&nbsp;zimie</li><li>sprawdzenie hamulców, luzów i&nbsp;elektryki</li><li>czyszczenie i&nbsp;smarowanie</li></ul>
       <a href="#zgloszenie" data-pick="przeglad">Umów</a>
     </article>
@@ -255,11 +256,11 @@
 
     <div class="form-out">
       <p class="form-err" hidden>Podaj numer telefonu, żebyśmy mogli oddzwonić.</p>
-      <button class="btn sig" type="submit">Przygotuj wiadomość</button>
+      <button class="btn hot" type="submit">Przygotuj wiadomość</button>
       <div class="msg" hidden>
         <p class="msg-l">Twoja wiadomość:</p>
         <pre class="msg-t"></pre>
-        <div class="msg-a"><a class="btn sig" data-sms href="#">Wyślij SMS-em</a><a class="btn line-l" data-mail href="#">Wyślij e-mailem</a></div>
+        <div class="msg-a"><a class="btn hot" data-sms href="#">Wyślij SMS-em</a><a class="btn line-l" data-mail href="#">Wyślij e-mailem</a></div>
       </div>
     </div>
   </form>
@@ -277,9 +278,8 @@
     <p class="chk-out" id="chk-out" aria-live="polite"></p>
     <p class="note">Odległość liczymy w&nbsp;linii prostej od&nbsp;ul.&nbsp;Ściegiennego 25. Przy samej granicy zadzwoń, ustalimy.</p>
   </div>
-  <figure class="radar">
-    <svg id="radar" viewBox="-300 -300 600 600" role="img" aria-label="Mapa: strefa odbioru 30 km wokół Kutna"></svg>
-  </figure>
+  <figure class="zmap"><div id="mapa" role="img" aria-label="Mapa: strefa odbioru 30 km wokół serwisu w Kutnie"></div>
+    <figcaption><span class="lg lg-z"></span>strefa odbioru do&nbsp;30&nbsp;km<span class="lg lg-s"></span>serwis, ul.&nbsp;Ściegiennego 25</figcaption></figure>
 </div></section>
 
 <!-- NIE TYLKO HULAJNOGI -->
@@ -336,7 +336,7 @@
       <tr data-d="6"><th>Sobota</th><td>10:00–15:00</td></tr>
       <tr data-d="0"><th>Niedziela</th><td>nieczynne</td></tr>
     </table>
-    <p><a class="btn line" href="https://www.google.com/maps/dir/?api=1&amp;destination=52.2236904,19.3550328" target="_blank" rel="noopener">Wyznacz trasę</a></p>
+    <p><a class="btn outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=52.2236904,19.3550328" target="_blank" rel="noopener">Wyznacz trasę</a></p>
   </div>
   <div class="k-map"><iframe title="Mapa dojazdu do serwisu" src="https://maps.google.com/maps?q=52.2236904,19.3550328&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </div></section>
@@ -351,6 +351,7 @@
 
 <div class="mbar"><a href="tel:+48889503420">Zadzwoń</a><a href="sms:+48889503420">SMS</a><a href="#zgloszenie" class="m-sig">Zgłoś usterkę</a></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
 <script src="assets/app.js" defer></script>
 <script src="assets/licznik.js" defer></script>
 </body>
